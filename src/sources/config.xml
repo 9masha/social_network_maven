@@ -1,0 +1,12 @@
+<Users>
+    <user>
+        <name>John</name>
+        <age>39</age>
+        <secret-key>123456</secret-key>
+    </user>
+    <user>
+        <name>Marry</name>
+        <age>38</age>
+        <secret-key>654321</secret-key>
+    </user>
+</Users>
