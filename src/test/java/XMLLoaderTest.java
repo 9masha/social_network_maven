@@ -18,23 +18,31 @@ public class XMLLoaderTest {
         XMLWorkWithFile.updateFile(fileName, "<test>123</test>");
 
         XMLLoader xmlLoader = new XMLLoader();
+        long time = file.lastModified();
+
         Document doc1 = xmlLoader.load(fileName);
         doc1.getDocumentElement().normalize();
-
         //Here comes the root node
         Element element1 = doc1.getDocumentElement();
         System.out.println(element1.getTextContent());
 
-        element1.setTextContent("abc");
-
-        xmlLoader.setFileVersion(file.lastModified());
-
+        XMLWorkWithFile.updateFile(fileName, "<test>abc</test>");
+        file.setLastModified(time);
         Document doc2 = xmlLoader.load(fileName);
         doc2.getDocumentElement().normalize();
-
         //Here comes the root node
         Element element2 = doc2.getDocumentElement();
         System.out.println(element2.getTextContent());
+
+        XMLWorkWithFile.updateFile(fileName, "<test>abc</test>");
+        Document doc3 = xmlLoader.load(fileName);
+        doc3.getDocumentElement().normalize();
+
+        //Here comes the root node
+        Element element3 = doc3.getDocumentElement();
+        System.out.println(element3.getTextContent());
+
+
     }
 }
 
@@ -57,7 +65,7 @@ class XMLWorkWithFile{
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write(addString);
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+//            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

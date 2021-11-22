@@ -40,8 +40,4 @@ public class XMLLoader {
     public long getFileVersion() {
         return fileVersion;
     }
-
-    public void setFileVersion(long fileVersion) {
-        this.fileVersion = fileVersion;
-    }
 }
